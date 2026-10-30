@@ -1,0 +1,5 @@
+# Generated from the combos section of randomcontainers/minimap2 package.yml by randomcontainers/ci.
+# Do not edit; change package.yml in randomcontainers/minimap2 instead.
+name: minimap2-samtools
+owner: minimap2
+with: [samtools]
