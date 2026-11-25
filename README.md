@@ -58,7 +58,16 @@ gh attestation verify oci://ghcr.io/randomcontainers/minimap2-samtools:latest \
   --repo randomcontainers/minimap2-samtools --signer-repo randomcontainers/ci
 ```
 
-Images from `ghcr.io/randomcontainers/minimap2` are built in [randomcontainers/minimap2](https://github.com/randomcontainers/minimap2), so verify them with `--repo randomcontainers/minimap2 --signer-repo randomcontainers/ci`.
+Each image also has a keyless cosign signature from the same workflow, for admission controllers that check cosign signatures:
+
+```sh
+cosign verify ghcr.io/randomcontainers/minimap2-samtools:latest \
+  --certificate-identity https://github.com/randomcontainers/ci/.github/workflows/build.yml@refs/tags/v1 \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-github-workflow-repository randomcontainers/minimap2-samtools
+```
+
+Images from `ghcr.io/randomcontainers/minimap2` are built in [randomcontainers/minimap2](https://github.com/randomcontainers/minimap2), so name that repository in `--repo` and `--certificate-github-workflow-repository`.
 
 ## Updates
 
